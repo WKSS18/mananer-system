@@ -1,0 +1,51 @@
+<div class="box">
+    <button class="btn btn-block btn-success" id="btn-add">+添加</button>
+    <div class="input-group" id="input-search">
+        <input type="text" name="q" class="form-control" id="search-val" placeholder="Search...">
+        <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+      </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered">
+        <tbody><tr style="height: 30px;">
+          <th style="width: 80px; text-align:center">公司logo</th>
+          <th style="width: 80px; text-align:center">公司名称</th>
+          <th style="width: 80px; text-align:center">职位名称</th>
+          <th style="width: 40px; text-align:center">工作地点</th>
+          <th style="width: 80px; text-align:center">薪水</th>
+          <th style="width: 80px; text-align:center">创建时间</th>
+          <th style="width: 80px; text-align:center">操作</th>
+        </tr>
+        {{#each list}}
+        <tr>
+          <td style="width: 70px;text-align: center;">
+            <img src="/positionupload/{{companyLogo}}" style="width: 60px; height: 60px;" alt="">
+        </td>
+          <td style="width: 70px;text-align: center;height:68px;line-height: 68px;">{{companyName}}</td>
+          <td style="width: 70px;text-align: center;height:68px;line-height: 68px;">{{positionName}}</td>
+          <td style="width: 120px;text-align: center;height:68px;;line-height: 68px;">{{cityName}}</td>
+          <td style="width: 70px;text-align: center;height:68px;line-height: 68px;">{{salary}}</td>
+          <td style="width: 70px;text-align: center;height:68px;line-height: 68px;">{{createTime}}</td>
+          <td style="width: 70px;text-align: center;height:68px;padding-top:25px">
+            <button data-id={{_id}} class="btn btn-block btn-success btn-sm" id="edit-btn">编辑</button>
+            <button data-id={{_id}} class="btn btn-block btn-danger btn-sm" id="del-btn" >删除</button>
+        </td>
+        </tr>
+        {{/each}}
+      </tbody></table>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="#/position/index?keywored={{keyword}}&pagesize={{pagesize}}&pageno=1&sortname={{sortname}}&sort={{des}}">«</a></li>
+        {{#each parse}}
+        <li data-id={{this}}><a href="#/position/index?keywored={{../keyword}}&pagesize={{../pagesize}}&pageno={{this}}&sortname={{../sortname}}&sort={{../des}}">{{this}}</a></li>
+        {{/each}}
+        <li><a href="#/position/index?keywored={{keyword}}&pagesize={{pagesize}}&pageno={{parse.length}}&sortname={{sortname}}&sort={{des}}">»</a></li>
+      </ul>
+    </div>
+  </div>
